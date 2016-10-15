@@ -17,6 +17,7 @@ apply plugin: 'spring-boot'
 jar {
 	baseName = 'eufraten-trello'
 	version = '0.0.1-SNAPSHOT'
+	jar.archiveName = "${jar.baseName}.${jar.extension}"
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
