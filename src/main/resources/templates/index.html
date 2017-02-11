@@ -5,9 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Eufraten Trello</title>
 
+<link rel="shortcut icon" href="/favicon.ico"
+	type="image/vnd.microsoft.icon" />
+
 <!-- Bootstrap -->
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="jumbotron.css" rel="stylesheet" />
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -36,9 +40,10 @@
 				<h2>Gerar ordem de serviço</h2>
 				<p>Gera o relatório de ordem de serviço e anexa-o ao cartão do
 					Trello.</p>
-				<div class="alert alert-warning alert-dismissible" role="alert">
-					<button id="btn-MensagemAutorizacao" type="button" class="close"
-						data-dismiss="alert" aria-label="Fechar">
+				<div id="alert-mensagemAutorizacao"
+					class="alert alert-warning alert-dismissible" role="alert">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Fechar">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<p>Ao carregar as ordens de serviço você deve autorizar o
@@ -47,16 +52,20 @@
 						Selecione a opção <strong>Login com Google</strong> e utilize seu
 						<strong>e-mail da Fundação Eufraten</strong>.
 					</p>
+					<button id="btn-carregarNovamente" type="button">Carregar
+						novamente</button>
 				</div>
-				<p>
-					<select id="select-gerarOS" data-select2="true">
-						<option value="">Carregando...</option>
-					</select>
-				</p>
-				<p>
-					<button type="button" id="btn-gerarOS" disabled="disabled"
-						class="btn btn-primary">Gerar OS &raquo;</button>
-				</p>
+				<form action="/gerarOS" method="POST" target="_blank">
+					<p>
+						<select name="cardId" id="select-gerarOS" data-select2="true">
+							<option value="">Carregando...</option>
+						</select>
+					</p>
+					<p>
+						<button type="submit" id="btn-gerarOS" disabled="disabled"
+							class="btn btn-primary">Gerar OS &raquo;</button>
+					</p>
+				</form>
 			</div>
 		</div>
 		<hr />

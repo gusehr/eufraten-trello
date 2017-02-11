@@ -38,7 +38,7 @@ quadroManutencao = {
 	cardsListados : function(cards) {
 		const
 		selectGerarOS = $('#select-gerarOS'), btnGerarOS = $("#btn-gerarOS"),
-				btnMensagemAutorizacao = $("#btn-MensagemAutorizacao");
+				alertMensagemAutorizacao = $("#alert-mensagemAutorizacao");
 
 		selectGerarOS.empty();
 		btnGerarOS.attr("disabled", "disabled");
@@ -68,7 +68,9 @@ quadroManutencao = {
 		});
 
 		btnGerarOS.removeAttr("disabled");
-		btnMensagemAutorizacao.click();
+		alertMensagemAutorizacao.toggle("slow", function() {
+			btnGerarOS.fadeOut(500).fadeIn(1000);
+		});
 	},
 
 	erro : function(error) {
@@ -78,6 +80,9 @@ quadroManutencao = {
 };
 
 $(document).ready(function() {
+	$("#btn-carregarNovamente").on("click", function() {
+		window.location.reload();
+	});
 	setTimeout(function() {
 		quadroManutencao.autenticar();
 	}, 2000);
