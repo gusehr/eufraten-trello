@@ -1,5 +1,6 @@
 package br.org.eufraten.manutencao;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -8,11 +9,12 @@ public class ControllerAdvicer {
 	public static final String VERSAO;
 
 	static {
-		String versao = System.getenv("HEROKU_RELEASE_VERSION");
-		if (versao == null || versao.equals("")) {
-			versao = "SNAPSHOT";
+		String herokuVersion = System.getenv("HEROKU_RELEASE_VERSION");
+		if (StringUtils.isNotBlank(herokuVersion)) {
+			VERSAO = herokuVersion;
+		} else {
+			VERSAO = "SNAPSHOT";
 		}
-		VERSAO = versao;
 	}
 
 	@ModelAttribute("versao")
