@@ -4,13 +4,13 @@ quadroManutencao = {
 	listGerarOS : "56eb606f6daa325d8468ad07",
 	cardExplicacaoGerarOS : "56ec3f240a9ce096cd473cd1",
 
-	init : function() {
+	autenticar : function() {
 		Trello.authorize({
-			name : "eufraten-manutencao-geral",
-			interactive : false,
+			name : "Eufraten - Painel de manutenção",
 			success : quadroManutencao.autenticacaoComSucesso,
 			error : quadroManutencao.falhaAutenticacao,
 			interactive : true,
+			type : "popup",
 		});
 	},
 
@@ -26,13 +26,19 @@ quadroManutencao = {
 	},
 
 	listarCardsDaOS : function() {
-		Trello.rest("GET", "/lists/" + quadroManutencao.listGerarOS + "/cards",
-				quadroManutencao.cardsListados, quadroManutencao.erro)
+		if (quadroManutencao.autenticacaoOK) {
+			Trello.rest("GET", "/lists/" + quadroManutencao.listGerarOS
+					+ "/cards", quadroManutencao.cardsListados,
+					quadroManutencao.erro)
+		} else {
+			quadroManutencao.autenticar();
+		}
 	},
 
 	cardsListados : function(cards) {
 		const
-		selectGerarOS = $('#select-gerarOS'), btnGerarOS = $("#btn-gerarOS");
+		selectGerarOS = $('#select-gerarOS'), btnGerarOS = $("#btn-gerarOS"),
+				btnMensagemAutorizacao = $("#btn-MensagemAutorizacao");
 
 		selectGerarOS.empty();
 		btnGerarOS.attr("disabled", "disabled");
@@ -62,6 +68,7 @@ quadroManutencao = {
 		});
 
 		btnGerarOS.removeAttr("disabled");
+		btnMensagemAutorizacao.click();
 	},
 
 	erro : function(error) {
@@ -71,5 +78,7 @@ quadroManutencao = {
 };
 
 $(document).ready(function() {
-	quadroManutencao.init();
+	setTimeout(function() {
+		quadroManutencao.autenticar();
+	}, 2000);
 })

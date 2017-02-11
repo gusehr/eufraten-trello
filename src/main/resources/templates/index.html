@@ -9,12 +9,14 @@
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="jumbotron.css" rel="stylesheet" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
 <!-- Trello API -->
-<script src="https://trello.com/1/client.js?key=b4cd0ee6e6058de673f33c9ab61de387"></script>
+<script
+	src="https://trello.com/1/client.js?key=b4cd0ee6e6058de673f33c9ab61de387"></script>
 
 </head>
 <body>
@@ -25,12 +27,6 @@
 			<h1>Eufraten | Painel de manutenção</h1>
 			<p>Esse é o painel de ordens de serviço e relatórios de
 				manutenção da fundação Eufraten.</p>
-			<!-- 
-			<p>
-				<a class="btn btn-primary btn-lg" href="#" role="button">Learn
-					more &raquo;</a>
-			</p>
-			 -->
 		</div>
 	</div>
 
@@ -40,15 +36,26 @@
 				<h2>Gerar ordem de serviço</h2>
 				<p>Gera o relatório de ordem de serviço e anexa-o ao cartão do
 					Trello.</p>
+				<div class="alert alert-warning alert-dismissible" role="alert">
+					<button id="btn-MensagemAutorizacao" type="button" class="close"
+						data-dismiss="alert" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<p>Ao carregar as ordens de serviço você deve autorizar o
+						Trello na janela que será aberta!</p>
+					<p>
+						Selecione a opção <strong>Login com Google</strong> e utilize seu
+						<strong>e-mail da Fundação Eufraten</strong>.
+					</p>
+				</div>
 				<p>
 					<select id="select-gerarOS" data-select2="true">
 						<option value="">Carregando...</option>
 					</select>
 				</p>
 				<p>
-					<button type="button" id="btn-gerarOS" disabled="disabled" class="btn btn-primary">
-						Gerar OS &raquo;
-					</button>
+					<button type="button" id="btn-gerarOS" disabled="disabled"
+						class="btn btn-primary">Gerar OS &raquo;</button>
 				</p>
 			</div>
 		</div>
