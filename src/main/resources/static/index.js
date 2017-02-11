@@ -10,7 +10,6 @@ quadroManutencao = {
 			success : quadroManutencao.autenticacaoComSucesso,
 			error : quadroManutencao.falhaAutenticacao,
 			interactive : true,
-			type : "popup",
 		});
 	},
 
