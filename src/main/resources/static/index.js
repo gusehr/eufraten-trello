@@ -1,40 +1,17 @@
 const
-quadroManutencao = {
-	autenticacaoOK : false,
-	listGerarOS : "56eb606f6daa325d8468ad07",
-	cardExplicacaoGerarOS : "56ec3f240a9ce096cd473cd1",
+indexPage = {
 
-	autenticar : function() {
-		Trello.authorize({
-			name : "Eufraten - Painel de manutenção",
-			success : quadroManutencao.autenticacaoComSucesso,
-			error : quadroManutencao.falhaAutenticacao,
-			interactive : true,
+	init : function() {
+		$("#btn-carregarNovamente").on("click", function() {
+			window.location.reload();
 		});
+		setTimeout(function() {
+			quadroManutencao.init();
+			quadroManutencao.listarCardsDaOS(indexPage.tratarCardsListados);
+		}, 2000);
 	},
 
-	autenticacaoComSucesso : function() {
-		quadroManutencao.autenticacaoOK = true;
-		console.log("App autenticada no trello");
-		quadroManutencao.listarCardsDaOS();
-	},
-
-	falhaAutenticacao : function(error) {
-		quadroManutencao.autenticacaoOK = false;
-		console.log("Falha na autenticacao do trello", error);
-	},
-
-	listarCardsDaOS : function() {
-		if (quadroManutencao.autenticacaoOK) {
-			Trello.rest("GET", "/lists/" + quadroManutencao.listGerarOS
-					+ "/cards", quadroManutencao.cardsListados,
-					quadroManutencao.erro)
-		} else {
-			quadroManutencao.autenticar();
-		}
-	},
-
-	cardsListados : function(cards) {
+	tratarCardsListados : function(cards) {
 		const
 		selectGerarOS = $('#select-gerarOS'), btnGerarOS = $("#btn-gerarOS"),
 				alertMensagemAutorizacao = $("#alert-mensagemAutorizacao");
@@ -72,17 +49,8 @@ quadroManutencao = {
 		});
 	},
 
-	erro : function(error) {
-		console.log("erro de acesso", error);
-	},
-
 };
 
 $(document).ready(function() {
-	$("#btn-carregarNovamente").on("click", function() {
-		window.location.reload();
-	});
-	setTimeout(function() {
-		quadroManutencao.autenticar();
-	}, 2000);
-})
+	indexPage.init();
+});
