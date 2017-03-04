@@ -16,10 +16,10 @@ public class ManutencaoServices {
 	private final static String CARD_OS_ID = "sjMFgC4m";
 	private final static String LIST_FEITO_VALIDADO = "56e4824f47c5ae52e716e4b5";
 
-	public OrdemDeServico gerarOrdemDeServico(String cardUrl) {
+	public OrdemDeServico gerarOrdemDeServico(String cardId) {
 		TrelloBoard boardManutencao = new TrelloBoard(QUADRO_MANUTENCAO_ID);
 
-		Card cardOrdemServico = boardManutencao.cardPorUrl(cardUrl);
+		Card cardOrdemServico = boardManutencao.cardPorId(cardId);
 
 		String numeroOS = gerarNumeroDaOS(boardManutencao);
 
