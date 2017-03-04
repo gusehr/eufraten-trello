@@ -1,6 +1,8 @@
 package br.org.eufraten.manutencao.ordemDeServico;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.attribute.FileAttribute;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,7 +51,7 @@ public class ManutencaoServices {
 	}
 
 	public void salvarRelatorio(RelatorioOrdemDeServico relatorioOrdemDeServico) throws IOException {
-		String filePath = relatorioOrdemDeServico.gerarExcel(".");
+		String filePath = relatorioOrdemDeServico.gerarExcel(Files.createTempDirectory("br.org.eufraten").toString());
 		TrelloBoard boardManutencao = new TrelloBoard(QUADRO_MANUTENCAO_ID);
 		boardManutencao.adicionarAnexo(relatorioOrdemDeServico.getOrdemDeServico().getCardId(), filePath);
 	}
