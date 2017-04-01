@@ -1,4 +1,4 @@
-package br.org.eufraten.manutencao;
+package br.org.eufraten.web;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;

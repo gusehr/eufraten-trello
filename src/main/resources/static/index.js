@@ -5,6 +5,9 @@ indexPage = {
 		$("#btn-carregarNovamente").on("click", function() {
 			window.location.reload();
 		});
+		$("#btn-gerarOS").on("click", function() {
+			indexPage.gerarOS();
+		});
 		setTimeout(function() {
 			quadroManutencao.init();
 			quadroManutencao.listarCardsDaOS(indexPage.tratarCardsListados);
@@ -48,6 +51,25 @@ indexPage = {
 			btnGerarOS.fadeOut(500).fadeIn(1000);
 		});
 	},
+	
+	gerarOS: function() {
+		const form = $("#form-gerarOS");
+		const action = form.attr("action");
+		
+		$.post(action, form.serialize())
+			.always(function (data) {
+				if (data.message) {
+					alert(data.message);
+				}
+				if (data.responseJSON) {
+					if (data.responseJSON.message) {
+						alert(data.responseJSON.message);
+					}
+					console.log(data.responseJSON);
+				}
+				console.log(data);
+			});
+	}
 
 };
 
