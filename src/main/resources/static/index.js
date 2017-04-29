@@ -55,9 +55,16 @@ indexPage = {
 	gerarOS: function() {
 		const form = $("#form-gerarOS");
 		const action = form.attr("action");
-		
+		const imgLoading = $("#img-gerarOS");
+		const btnGerarOS = $("#btn-gerarOS")
+
+		imgLoading.toggleClass("hidden");
+		btnGerarOS.attr("disabled", "disabled");
 		$.post(action, form.serialize())
 			.always(function (data) {
+				imgLoading.toggleClass("hidden");
+				btnGerarOS.removeAttr("disabled");
+
 				if (data.message) {
 					alert(data.message);
 				}
