@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.org.eufraten.manutencao.ordemDeServico.ManutencaoServices;
@@ -19,12 +19,12 @@ import br.org.eufraten.web.JSendResponse;
 
 @Controller
 public class GerarOSController {
-	
+
 	private static Logger LOGGER = LoggerFactory.getLogger(GerarOSController.class);
 
 	@PostMapping("/gerarOS")
 	@ResponseBody
-	public JSendResponse gerarOS(HttpServletRequest request, HttpServletResponse response, @RequestBody String cardId)
+	public JSendResponse gerarOS(HttpServletRequest request, HttpServletResponse response, @RequestParam String cardId)
 			throws IOException {
 		try {
 			ManutencaoServices manutencaoServices = new ManutencaoServices();
